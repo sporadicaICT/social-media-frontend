@@ -1,25 +1,24 @@
-import logo from './logo.svg';
 import './App.css';
+import '@ionic/react/css/core.css';
+import { Routes, Route } from 'react-router-dom'
+import { ProfilePage } from './pages/Profile'
+import { HomePage } from './pages/Home';
+import { SignInPage } from './pages/SignIn';
+import { SignUpPage } from './pages/SignUp';
+import { Tabs } from './components/Tabs';
+import { UserPage } from "./pages/UserPage"
+import { Chats } from './pages/Chat';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+  <Routes>
+    <Route path="/chat/users" element={<Chats/>}/>
+    <Route path="/user/:id" element={<UserPage />}/>
+    <Route path="/main/*" element={<Tabs/>} />
+    <Route path="/signup" element={<SignUpPage/>} />
+    <Route path="/" element={<SignInPage/>} />
+  </Routes>
+);
 }
 
 export default App;
