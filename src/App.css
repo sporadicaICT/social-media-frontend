@@ -1,38 +1,42 @@
-.App {
-  text-align: center;
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.btn-primary{
+  @apply bg-sky-600 border-0 rounded-md;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.form-control{
+  @apply border-[1px] px-2 h-8 rounded-md w-full border-gray-800 focus-within:border-slate-700 focus-within:border-[1px]
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.post-list{
+  @apply list-none h-max
+}
+.post-item{
+  @apply h-12 dark:text-white text-slate-800
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.post-item h2{
+  @apply font-semibold
 }
 
-.App-link {
-  color: #61dafb;
+.post-item p{
+  @apply font-light
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.list-avatar{
+  @apply border-[0.5px] rounded-full w-12 h-12
+}
+
+.btn-follow{
+  @apply rounded-lg w-full h-8 my-2
+}
+
+.not-following{
+  @apply border-0 bg-sky-500
+}
+
+.following{
+  @apply bg-white border-[1px] text-slate-900 border-slate-900 dark:bg-zinc-900 dark:text-sky-500 dark:border-sky-500
 }
