@@ -3,7 +3,7 @@ import { useNavigate } from "react-router"
 import { IonToast } from '@ionic/react';
 import '@ionic/react/css/core.css';
 import { Filesystem } from "@capacitor/filesystem"
-
+import { errorHandled } from "../utils/utils";
 
 export const SignInPage = () => {
     const navigate = useNavigate()
@@ -19,8 +19,25 @@ export const SignInPage = () => {
     function getPassword(event) {
         setPassword(event.target.value)
     }
-
+    function submitDevData() {
+      errorHandled(
+        fetch(
+          `http://localhost:4000/auth?username=${username}&password=${password}`
+        )
+      )
+        .then((res) => res.json())
+        .then((data) => {
+          if (!data[0]) throw new Error("Cannot fetch");
+          localStorage.setItem("user", JSON.stringify(data[0]));
+        })
+        .catch((err)=>{
+            console.error(err.message)
+            err.message === 'No username or password provided' ? setErrorMessage(err.message) : setErrorMessage('Error while Signing In')
+            setError(true)
+        });
+    }
     function submitData(){
+        if (process.env.NODE_ENV === "development") return submitDevData();
         fetch('http://localhost:4000/sign-in', {
             "method": "POST",
             "headers": {"Content-Type": "application/json"},
