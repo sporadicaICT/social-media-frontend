@@ -1,0 +1,8 @@
+tasks:
+  - name: Frontend
+    init: npm install && npm run build
+    command: npm run start
+  - name:  Server
+    init: sh scripts/init-server.sh
+    command: sudo service mysql start && npm run start --prefix ../social-media-backend
+
