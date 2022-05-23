@@ -1,8 +1,8 @@
 tasks:
   - name: Frontend
-    init: npm install && npm run build
+    init: npm install && npm run build && gp sync-done setup
     command: npm run start
   - name:  Server
-    init: sh scripts/init-server.sh
-    command: sudo service mysql start && npm run start --prefix ../social-media-backend
+    init: gp sync-await setup
+    command: npm run start-server
 
