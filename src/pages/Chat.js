@@ -1,15 +1,14 @@
-import { useState, useRef, useEffect } from "react"
+import { useState, useEffect } from "react"
 import { io } from "socket.io-client"
+import  {useForm} from 'react-hook-form';
 import { IoSend } from "react-icons/io5"
 const socket = io('ws://localhost:4000');
-
 export const Chats = () => {
-    const [chats, setChats] = useState([])
-    const inputRef = useRef()
-    
+    const {resetField,register, getValues} =  useForm()
+    const [chats, setChats] = useState([])    
     function sendChat(){
-        socket.emit('message', inputRef.current.value)
-        inputRef.current.value = ''
+        socket.emit('message', getValues('message'))
+        resetField('message');
     }
 
     useEffect(() =>{
@@ -33,7 +32,7 @@ export const Chats = () => {
                 </ul> 
             </div>
             <span className="sticky bottom-0 h-max flex">
-                <input placeholder="Message..." ref={inputRef} />
+                <input {...register('message')} placeholder="Message..." />
                 <button 
                     onClick={sendChat}
                     className="rounded-full w-8 h-8 flex items-center justify-center text-white bg-sky-500"> 
