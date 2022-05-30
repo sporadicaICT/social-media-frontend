@@ -15,6 +15,7 @@
     "framer-motion": "^6.2.8",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
+    "react-hook-form": "^7.31.2",
     "react-icons": "^4.3.1",
     "react-router": "^6.2.1",
     "react-router-dom": "^6.2.1",
@@ -23,11 +24,12 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "react-scripts start && npm run watch:css",
-    "build": "react-scripts build && npm run watch:css",
+    "start": "react-scripts start",
+    "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "watch:css": "postcss src/App.css"
+    "start-server": "npm run json-server -- -p 4000 ./scripts/generate.js",
+    "json-server": "PATH=$PATH:$(npm bin) json-server"
   },
   "eslintConfig": {
     "extends": [
@@ -48,6 +50,9 @@
     ]
   },
   "devDependencies": {
+    "autoprefixer": "^10.4.7",
+    "json-server": "^0.17.0",
+    "postcss": "^8.4.14",
     "tailwindcss": "^3.0.22"
   }
 }

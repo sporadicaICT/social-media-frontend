@@ -1,0 +1,8 @@
+tasks:
+  - name: Frontend
+    init: npm install && npm run build && gp sync-done setup
+    command: npm run start
+  - name:  Server
+    init: gp sync-await setup
+    command: npm run start-server
+
